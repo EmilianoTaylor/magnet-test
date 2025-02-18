@@ -1,5 +1,5 @@
 // @ts-nocheck
-import './swiperList.css'
+import './swiperBlackbox.css'
 import React, { useState, useEffect, useRef } from "react";
 // import styles from "./SwipeList.module.css";
 
@@ -40,7 +40,7 @@ const SwiperBlackboxList = () => {
 			setCurrentIndex((prev) => prev - 1);
 		}
 	
-		setTimeout(() => setSwipeDirection(""), 200); // Убираем класс после анимации
+		setTimeout(() => setSwipeDirection(""), 0); // Убираем класс после анимации
 	};
 
   return (
