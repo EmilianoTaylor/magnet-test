@@ -5,10 +5,10 @@ html {
 	color: #F1F1F1;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
 	body {
-		margin: 0;
+		/* margin: 0; */
 		overflow: hidden;
 		font-family: 'Roboto', sans-serif;
 	}
-} */
+}

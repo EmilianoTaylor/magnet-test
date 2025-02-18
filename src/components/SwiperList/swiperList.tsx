@@ -1,75 +1,73 @@
 // @ts-nocheck
-// import './swiperList.css'
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import styles from "./SwiperList.module.css";
+import './swiperList.css'
+import React, { useState, useEffect, useRef } from "react";
+// import styles from "./SwipeList.module.css";
 
-
-
-type User = {
-  name: string;
-  company: string;
-  info: string;
-};
-
-const users: User[] = [
-  { name: 'John Doe', company: 'Acme Corp', info: 'Software Engineer' },
-  { name: 'Jane Smith', company: 'Techies Inc', info: 'Project Manager' },
-  { name: 'Michael Lee', company: 'Innovative Solutions', info: 'Designer' },
-  { name: 'Emily Johnson', company: 'DevCo', info: 'Product Manager' },
-  { name: 'David Williams', company: 'GlobalTech', info: 'CTO' },
-  { name: 'Sarah Brown', company: 'StartupX', info: 'CEO' },
-  { name: 'Chris Davis', company: 'WebWorks', info: 'Lead Developer' },
-  { name: 'Alex Green', company: 'CloudTech', info: 'UX/UI Designer' },
-  { name: 'Emma White', company: 'DigitalWorks', info: 'Marketing Manager' },
-  { name: 'Joshua Adams', company: 'CodeMasters', info: 'Software Architect' },
-  { name: 'Olivia Martin', company: 'CodeBase', info: 'Full Stack Developer' },
-  { name: 'Sophia Clark', company: 'FastTech', info: 'HR Manager' },
-  { name: 'James Rodriguez', company: 'DataCraft', info: 'Data Analyst' },
-  { name: 'Benjamin Wilson', company: 'AI Systems', info: 'Machine Learning Expert' },
-  { name: 'Charlotte Davis', company: 'Tech Enterprises', info: 'Operations Manager' },
-  { name: 'Mia Thomas', company: 'WebGenius', info: 'Frontend Developer' },
-  { name: 'Liam Martinez', company: 'DevSolutions', info: 'Software Engineer' },
-  { name: 'Ethan Jackson', company: 'MobileApp Co.', info: 'Mobile Developer' },
-  { name: 'Amelia Moore', company: 'CyberPro', info: 'Security Specialist' },
+const users = [
+  { id: 1, name: "msilenkov", company: "Digital Designer", info: "Digital Designer" },
+  { id: 2, name: "psmolensky", company: "Digital Designer", info: "ищет помощника" },
+  { id: 3, name: "apolyakov", company: "Росатом", info: "ищет помощника" },
+  { id: 4, name: "pmakarov", company: "Marketing Adviser", info: "ищет помощника" },
+  { id: 5, name: "ichulpanov", company: "PO Yandex Go", info: "ищет помощника" },
+  { id: 6, name: "Сергей Кравцов", company: "МФТИ", info: "ищет помощника" },
+  { id: 7, name: "Mikhaylo", company: "Chel", info: "ищет помощника" },
+  { id: 8, name: "Antony", company: "Betis", info: "Digital Designer" },
+  { id: 9, name: "Jackson", company: "Chel", info: "Digital Designer" },
+  { id: 10, name: "Pogba", company: "Nope", info: "Digital Designer" },
+  { id: 11, name: "Chukwuemeka", company: "Chel", info: "" },
+  { id: 12, name: "Wirtz", company: "BOU", info: "" },
 ];
 
-const SwiperList: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(2); // Изначально активен 3-й элемент
+const SwiperBlackboxList = () => {
+  const [startY, setStartY] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+	const [swipeDirection, setSwipeDirection] = useState("");
+  const listRef = useRef(null);
+
+  const handleTouchStart = (e) => {
+    setStartY(e.touches[0].clientY);
+  };
+
+  const handleTouchEnd = (e) => {
+		const endY = e.changedTouches[0].clientY;
+		const diffY = startY - endY;
+		
+		if (diffY > 30 && currentIndex < users.length - 5) {
+			setSwipeDirection("swipe-up");
+			setCurrentIndex((prev) => prev + 1);
+		} else if (diffY < -30 && currentIndex > 0) {
+			setSwipeDirection("swipe-down");
+			setCurrentIndex((prev) => prev - 1);
+		}
+	
+		setTimeout(() => setSwipeDirection(""), 200); // Убираем класс после анимации
+	};
 
   return (
-    <div className={styles["swiper-container"]}>
-      <Swiper
-        direction="vertical"
-        slidesPerView={5}
-        spaceBetween={10}
-        navigation
-        modules={[Navigation]}
-        className={styles.swiper}
-        onSlideChange={() => setActiveIndex(null)} // Во время свайпа сбрасываем active
-        onSlideChangeTransitionEnd={(swiper) => setActiveIndex(swiper.activeIndex + 2)} // После завершения свайпа вычисляем новый active
+    <div className="swiper-container">
+      <div className="background-overlay"></div> {/* Статичный серый фон */}
+      <ul
+        className={`swiper ${swipeDirection}`}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        ref={listRef}
       >
         {users.map((user, index) => {
-          const isActive = index === activeIndex;
-
+          let className = "hidden";
+          if (index >= currentIndex && index < currentIndex + 5) {
+            className = `item item-${index - currentIndex + 1}`;
+          }
           return (
-            <SwiperSlide
-              key={index}
-              className={isActive ? styles["active-slide"] : styles["swiper-slide"]}
-            >
-              <div>
-                <p>{user.name}</p>
-                <p>{user.company}</p>
-                {isActive && <p>{user.info}</p>} {/* Показываем info только в активном */}
-              </div>
-            </SwiperSlide>
+            <li key={user.id} className={className}>
+              <p>{user.name}</p>
+              <p>{user.company}</p>
+              {index === currentIndex + 2 && <p>{user.info}</p>}
+            </li>
           );
         })}
-      </Swiper>
+      </ul>
     </div>
   );
 };
 
-export default SwiperList;
+export default SwiperBlackboxList;

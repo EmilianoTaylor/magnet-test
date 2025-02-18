@@ -1,64 +1,71 @@
 // @ts-nocheck
 import './swiperBlackbox.css'
+import React, { useState, useEffect, useRef } from "react";
+// import styles from "./SwipeList.module.css";
 
-
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
-interface User {
-  name: string;
-  company: string;
-  info: string;
-}
-
-const users: User[] = Array(20).fill(null).map((_, index) => ({
-  name: `Пользователь ${index + 1}`,
-  company: `Компания ${index + 1}`,
-  info: `Короткая информация о пользователе ${index + 1}`,
-}));
+const users = [
+  { id: 1, name: "msilenkov", company: "Digital Designer", info: "Digital Designer" },
+  { id: 2, name: "psmolensky", company: "Digital Designer", info: "ищет помощника" },
+  { id: 3, name: "apolyakov", company: "Росатом", info: "ищет помощника" },
+  { id: 4, name: "pmakarov", company: "Marketing Adviser", info: "ищет помощника" },
+  { id: 5, name: "ichulpanov", company: "PO Yandex Go", info: "ищет помощника" },
+  { id: 6, name: "Сергей Кравцов", company: "МФТИ", info: "ищет помощника" },
+  { id: 7, name: "Mikhaylo", company: "Chel", info: "ищет помощника" },
+  { id: 8, name: "Antony", company: "Betis", info: "Digital Designer" },
+  { id: 9, name: "Jackson", company: "Chel", info: "Digital Designer" },
+  { id: 10, name: "Pogba", company: "Nope", info: "Digital Designer" },
+  { id: 11, name: "Chukwuemeka", company: "Chel", info: "" },
+  { id: 12, name: "Wirtz", company: "BOU", info: "" },
+];
 
 const SwiperBlackboxList = () => {
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [startY, setStartY] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+	const [swipeDirection, setSwipeDirection] = useState("");
+  const listRef = useRef(null);
 
-  const handleSwipe = (direction: 'up' | 'down') => {
-    if (direction === 'up') {
-      setActiveIndex(activeIndex - 1);
-    } else {
-      setActiveIndex(activeIndex + 1);
-    }
+  const handleTouchStart = (e) => {
+    setStartY(e.touches[0].clientY);
   };
 
+  const handleTouchEnd = (e) => {
+		const endY = e.changedTouches[0].clientY;
+		const diffY = startY - endY;
+		
+		if (diffY > 30 && currentIndex < users.length - 5) {
+			setSwipeDirection("swipe-up");
+			setCurrentIndex((prev) => prev + 1);
+		} else if (diffY < -30 && currentIndex > 0) {
+			setSwipeDirection("swipe-down");
+			setCurrentIndex((prev) => prev - 1);
+		}
+	
+		setTimeout(() => setSwipeDirection(""), 200); // Убираем класс после анимации
+	};
+
   return (
-    <div className="swiper-list">
-      {users.map((user, index) => (
-        <motion.div
-          key={index}
-          className={`swiper-list-item ${index === activeIndex ? 'active' : ''}`}
-          initial={{ opacity: 0, y: index === activeIndex ? 0 : index < activeIndex ? -100 : 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: index < activeIndex ? -100 : 100 }}
-          transition={{ duration: 0.5 }}
-          drag={true}
-          dragConstraints={{ top: 0, bottom: 0 }}
-          dragSnapBack={true}
-          onDragEnd={(event, info) => {
-            if (info.offset.y > 50) {
-              handleSwipe('down');
-            } else if (info.offset.y < -50) {
-              handleSwipe('up');
-            }
-          }}
-        >
-          <div className="swiper-list-item-content">
-            <h2>{user.name}</h2>
-            <p>{user.company}</p>
-            {index === activeIndex && (
-              <p className="swiper-list-item-info">{user.info}</p>
-            )}
-          </div>
-        </motion.div>
-      ))}
+    <div className="swiper-container">
+      <div className="background-overlay"></div> {/* Статичный серый фон */}
+      <ul
+        className={`swiper ${swipeDirection}`}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        ref={listRef}
+      >
+        {users.map((user, index) => {
+          let className = "hidden";
+          if (index >= currentIndex && index < currentIndex + 5) {
+            className = `item item-${index - currentIndex + 1}`;
+          }
+          return (
+            <li key={user.id} className={className}>
+              <p>{user.name}</p>
+              <p>{user.company}</p>
+              {index === currentIndex + 2 && <p>{user.info}</p>}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

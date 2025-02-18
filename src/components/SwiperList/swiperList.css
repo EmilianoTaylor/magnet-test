@@ -1,47 +1,134 @@
+/* Контейнер */
 .swiper-container {
   width: 80vw;
-  height: 60vh;
-  margin: 0 auto;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   position: relative;
 }
 
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Фон overlay */
+.background-overlay {
+  position: absolute;
+  top: 30vh; /* Совпадает с item-3 */
+  width: 80vw;
+  height: 30vh;
+  background: #ccc;
+  z-index: 0;
 }
 
-.swiper-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  background-color: transparent;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin: 5px;
-  transition: transform 0.3s ease-in-out;
-  height: auto;
+/* Лента с элементами */
+.swiper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
-.swiper-item.active {
-  background-color: #f0f0f0;
-  height: 25vh; /* Увеличиваем активный элемент */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.hidden {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
 }
 
-.user-info h4 {
-  font-size: 1.2rem;
+.item {
+  position: absolute;
+  width: 80vw;
+	height: 10vh;
+  transition: all 0.5s ease;
+}
+
+/* Убрали серый фон у item-3 */
+.item-1 {
+  top: 10vh;
+  opacity: 0.7;
+}
+
+.item-2 {
+  top: 20vh;
+  opacity: 0.7;
+}
+
+.item-3 {
+  top: 30vh;
+  height: 30vh;
   font-weight: bold;
+  opacity: 1;
+	color: royalblue;
 }
 
-.user-info p {
-  font-size: 1rem;
-  color: #666;
+.item-4 {
+  top: 50vh;
+  opacity: 0.7;
 }
 
-.info {
-  font-size: 0.8rem;
-  color: #444;
+.item-5 {
+  top: 60vh;
+  opacity: 0.7;
+}
+
+/* Плавный уход вверх и растворение */
+.swipe-up .item-1 {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-5vh);
+    opacity: 0;
+  }
+}
+
+/* Плавное появление item-5 */
+.swipe-up .item-5 {
+  animation: fadeInFromBottom 0.5s ease forwards;
+}
+
+@keyframes fadeInFromBottom {
+  0% {
+    transform: translateY(5vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+/* Плавное появление сверху item-1 */
+.swipe-down .item-1 {
+  animation: fadeInFromTop 0.5s ease forwards;
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    transform: translateY(-5vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+/* Плавное исчезновение item-5 вниз */
+.swipe-down .item-5 {
+  animation: fadeOutDown 0.5s ease forwards;
+}
+
+@keyframes fadeOutDown {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(5vh);
+    opacity: 0;
+  }
 }

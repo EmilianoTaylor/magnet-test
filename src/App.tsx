@@ -7,8 +7,8 @@ function App() {
 
   return (
 		<div className='mainDiv'>
-			<SwiperList />
-			{/* <SwiperBlackboxList /> */}
+			{/* <SwiperList /> */}
+			<SwiperBlackboxList />
 		</div>
   )
 }
