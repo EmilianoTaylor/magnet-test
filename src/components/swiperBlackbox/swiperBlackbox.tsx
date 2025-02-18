@@ -3,6 +3,7 @@ import './swiperBlackbox.css'
 import React, { useState, useEffect, useRef } from "react";
 import icon from '../images/userIcon.svg';
 import infoIcon from '../images/infoIcon.svg'
+import UserIcon from '../UserIcon/userIcon';
 // import styles from "./SwipeList.module.css";
 
 const users = [
@@ -12,10 +13,10 @@ const users = [
 	{ id: 4, name: "pmakarov", company: "Marketing Adviser", info: "Ищет менеджера для реализации крупных задач на проекте" },
 	{ id: 5, name: "ichulpanov", company: "PO Yandex Go", info: "Найм людей на долгосрочную работу в команде" },
 	{ id: 6, name: "Сергей Кравцов", company: "МФТИ", info: "Ищет менеджера для реализации крупных задач на проекте" },
-	{ id: 7, name: "Mikhaylo", company: "Chel", info: "Ищет менеджера для реализации крупных задач на проекте" },
+	{ id: 7, name: "Mikhaylo Mudryk", company: "Chel", info: "Ищет менеджера для реализации крупных задач на проекте" },
 	{ id: 8, name: "Antony", company: "Betis", info: "Ищет менеджера для реализации крупных задач на проекте" },
 	{ id: 9, name: "Jackson", company: "Chel", info: "Ищет менеджера для реализации крупных задач на проекте" },
-	{ id: 10, name: "Pogba", company: "Nope", info: "Ищет менеджера для реализации крупных задач на проекте" },
+	{ id: 10, name: "Paul Pogba", company: "Nope", info: "Ищет менеджера для реализации крупных задач на проекте" },
 	{ id: 11, name: "Chukwuemeka", company: "Chel", info: "Ищет менеджера для реализации крупных задач на проекте" },
 	{ id: 12, name: "Wirtz", company: "BOU", info: "" },
 ];
@@ -24,6 +25,8 @@ const SwiperBlackboxList = () => {
 	const [startY, setStartY] = useState(0);
 	const [currentIndex, setCurrentIndex] = useState(1);
 	const listRef = useRef(null);
+	const [infoText, setInfoText] = useState(users[currentIndex + 2]?.info || "Нет информации");
+	const [fade, setFade] = useState(false);
 
 	const handleTouchStart = (e) => {
 		setStartY(e.touches[0].clientY);
@@ -34,22 +37,31 @@ const SwiperBlackboxList = () => {
 		const diffY = startY - endY;
 		if (diffY > 30 && currentIndex < users.length - 6) { // Остановиться на item-6
 			setCurrentIndex((prev) => prev + 1);
+			setTimeout(() => {
+				document.querySelector(".item-4").classList.add("swipe-up");
+			}, 10);
 		} else if (diffY < -30 && currentIndex > 1) { // Остановиться на item-1
 			setCurrentIndex((prev) => prev - 1);
+			document.querySelector(".item-4").classList.remove("swipe-up");
 		}
 	};
 
+	useEffect(() => {
+    setFade(true); // Запускаем анимацию исчезновения
+    setTimeout(() => {
+        setInfoText(users[currentIndex + 2]?.info || "Нет информации");
+        setFade(false); // Запускаем анимацию появления
+    }, 300); // 300 мс — длительность скрытия
+	}	, [currentIndex]);
 
 
 	return (
 		<div className="swiper-container">
 			<div className="background-overlay">
-				<div className='informationBlock'>
-				<span className='userText'>
-					{users[currentIndex + 2]?.info || "Нет информации"}
-				</span>
-					<img src={infoIcon} className="infoIcon" />
-				</div>
+			<div className="informationBlock">
+				<span className={`userText ${fade ? "fade-out" : "fade-in"}`}>{infoText}</span>
+				<img src={infoIcon} className="infoIcon" />
+			</div>
 			</div>
 			<ul
 				className="swiper"
@@ -71,14 +83,12 @@ const SwiperBlackboxList = () => {
 					return (
 						<li key={user.id} className={className}>
 							<div className="userCard">
-								<img src={icon} className="userIcon" />
+								<UserIcon name={user.name} className="userIcon" />
 								<div className="userInfo">
 									<span className="userName">{user.name}</span>
 									<span className="userCompany">{user.company}</span>
 								</div>
 							</div>
-							{/* {index === currentIndex + 2 && 
-								} */}
 						</li>
 					);
 				})}
