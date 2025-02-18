@@ -128,22 +128,21 @@
 .informationBlock {
 	position: absolute;
 	height: fit-content;
-	width: 70%;
+	width: 75%;
 	display: flex;
   align-items: flex-end;
   gap: 20px;
   padding: 10px 16px;
   border-radius: 12px;
-  width: fit-content;
-	bottom: 10%;
+	bottom: 5%;
 	right: 5%;
 }
 
 .userText {
 	font-weight: 400;
 	font-size: 2vh;
-	line-height: 20px;
-	text-align: right;
+	line-height: 14px;
+	text-align:end;
 	color: rgba(255, 255, 255, 0.5);
 }
 

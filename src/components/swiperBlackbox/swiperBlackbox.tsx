@@ -43,7 +43,14 @@ const SwiperBlackboxList = () => {
 
 	return (
 		<div className="swiper-container">
-			<div className="background-overlay"></div>
+			<div className="background-overlay">
+				<div className='informationBlock'>
+				<span className='userText'>
+					{users[currentIndex + 2]?.info || "Нет информации"}
+				</span>
+					<img src={infoIcon} className="infoIcon" />
+				</div>
+			</div>
 			<ul
 				className="swiper"
 				onTouchStart={handleTouchStart}
@@ -70,11 +77,8 @@ const SwiperBlackboxList = () => {
 									<span className="userCompany">{user.company}</span>
 								</div>
 							</div>
-							{index === currentIndex + 2 && 
-								<div className='informationBlock'>
-									<span className='userText'>{user.info}</span>
-									<img src={infoIcon} className="infoIcon" />
-								</div>}
+							{/* {index === currentIndex + 2 && 
+								} */}
 						</li>
 					);
 				})}
