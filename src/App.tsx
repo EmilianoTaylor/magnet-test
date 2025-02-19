@@ -4,8 +4,6 @@ import SwiperBlackboxList from './components/SwiperBlackbox/swiperBlackbox'
 import UserPanel from './components/UserPanel/userPanel'
 import FilterPanel from './components/FilterPanel/filterPanel'
 
-//@ts-ignore
-const tg = window.Telegram?.WebApp;
 
 function App() {
 	const [rotateIcon, setRotateIcon] = useState(0);
