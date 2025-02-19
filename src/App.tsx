@@ -10,6 +10,7 @@ const tg = window.Telegram?.WebApp;
 function App() {
 	const [rotateIcon, setRotateIcon] = useState(0);
 	const [user, setUser] = useState({ id: '', first_name: '' });
+	//@ts-ignore
 	const userName = "Viacheslav"
 
   const toggleRotateIcon = (direction: number) => {
