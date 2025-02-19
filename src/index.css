@@ -1,14 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap');
+@font-face {
+	font-family: 'TT Commons';
+	src: url('./TTCommons/TTCommons-Regular.eot');
+	src: local('TT Commons Regular'), local('TTCommons-Regular'),
+			url('./TTCommons/TTCommons-Regular.eot.eot?#iefix') format('embedded-opentype'),
+			url('./TTCommons/TTCommons-Regular.eot.woff') format('woff'),
+			url('./TTCommons/TTCommons-Regular.eot.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 
 html {
 	background-color: black;
 	color: #F1F1F1;
+	font-family: 'TT Commons', sans-serif;
 }
 
 @media (max-width: 768px) {
 	body {
 		/* margin: 0; */
 		overflow: hidden;
-		font-family: 'Roboto', sans-serif;
 	}
 }

@@ -1,6 +1,8 @@
 // @ts-nocheck
 
-const UserIcon = ({ name }) => {
+import { div } from "framer-motion/client";
+
+const UserIcon = ({ name, className }) => {
   // Функция для получения инициалов
   const getInitials = (name) => {
     if (!name) return "?";
@@ -14,7 +16,7 @@ const UserIcon = ({ name }) => {
   };
 
   return (
-    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="52" height="52" rx="18" fill="#555555" />
       <text
         x="50%"
