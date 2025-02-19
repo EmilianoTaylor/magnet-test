@@ -3,7 +3,6 @@
 import { div } from "framer-motion/client";
 
 const UserIcon = ({ name, className }) => {
-  // Функция для получения инициалов
   const getInitials = (name) => {
     if (!name) return "?";
     

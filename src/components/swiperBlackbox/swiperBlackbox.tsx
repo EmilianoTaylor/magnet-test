@@ -2,10 +2,9 @@
 import './swiperBlackbox.css'
 import React, { useState, useEffect, useRef } from "react";
 import icon from '../images/userIcon.svg';
-import infoIcon from '../images/infoIcon.svg'
+import infoIcon from '../images/infoIcon.svg';
 import UserIcon from '../UserIcon/userIcon';
 import telegramIcon from '../images/telegramIcon.svg';
-
 
 const users = [
 	{ id: 1, name: "msilenkov", company: "Google", info: "Ищет менеджера для реализации крупных задач на проекте" },
@@ -53,11 +52,11 @@ const SwiperBlackboxList = ({ toggleRotateIcon }) => {
   };
 
   useEffect(() => {
-    setFade(true); // Запускаем анимацию исчезновения
+    setFade(true);
     setTimeout(() => {
       setInfoText(users[(currentIndex + 2) % users.length]?.info || "Нет информации");
-      setFade(false); // Запускаем анимацию появления
-    }, 300); // 300 мс — длительность скрытия
+      setFade(false);
+    }, 300);
   }, [currentIndex]);
 
   return (
