@@ -1,5 +1,6 @@
 {
   "name": "magnetproject",
+	"homepage": "https://emilianotaylor.github.io/magnetTest/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
