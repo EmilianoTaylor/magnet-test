@@ -27,7 +27,21 @@
 	
 			.mobile-content {
 				height: calc(100% + 1px);
-				background: lightgoldenrodyellow;
+				background: lightgrey;
+			}
+
+			html, body {
+				overscroll-behavior: none;
+				touch-action: none;
+			}
+
+			#root {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
 			}
 		</style>
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
