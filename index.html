@@ -31,25 +31,31 @@
 			}
 
 			html, body {
-				overscroll-behavior: none;
-				touch-action: none;
-			}
+  overscroll-behavior-y: contain; /* Запрещает скролл всей страницы, но не контента внутри */
+  touch-action: manipulation; /* Оставляет возможность взаимодействия с контентом */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-			#root {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Запрещает скролл всего приложения */
+  display: flex;
+  flex-direction: column;
+}
 		</style>
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
 		<script>
 		Telegram.WebApp.expand();
 		</script>
     <title>Vite + React + TS</title>
-    <script type="module" crossorigin src="/magnet-test/assets/index-6CJdFZ24.js"></script>
-    <link rel="stylesheet" crossorigin href="/magnet-test/assets/index-Bne4Osia.css">
+    <script type="module" crossorigin src="/magnet-test/assets/index-BAk_ObLV.js"></script>
+    <link rel="stylesheet" crossorigin href="/magnet-test/assets/index-BtUozfxK.css">
   </head>
   <body>
 		<div id="wrap">
