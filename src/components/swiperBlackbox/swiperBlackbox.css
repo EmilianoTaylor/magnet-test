@@ -3,7 +3,7 @@
 		position: absolute;
 		top: 10vh;
 		width: 100vw;
-		height: 67vh;
+		height: 69vh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -129,7 +129,7 @@
 	}
 	
 	.item-7 {
-		top: 63vh;
+		top: 68vh;
 		opacity: 0;
 	}
 	
@@ -176,16 +176,16 @@
 	.userInfo {
 		display: flex;
 		flex-direction: column;
-		gap: 5px;
+		gap: 3px;
 	}
 	
 	.userName {
-		font-size: 16px;
+		font-size: 19px;
 		color: #ddd;
 	}
 	
 	.userCompany {
-		font-size: 14px;
+		font-size: 16px;
 		color: rgba(255, 255, 255, 0.5);
 	}	
 }

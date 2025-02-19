@@ -3,8 +3,8 @@
 	src: url('./TTCommons/TTCommons-Regular.eot');
 	src: local('TT Commons Regular'), local('TTCommons-Regular'),
 			url('./TTCommons/TTCommons-Regular.eot.eot?#iefix') format('embedded-opentype'),
-			url('./TTCommons/TTCommons-Regular.eot.woff') format('woff'),
-			url('./TTCommons/TTCommons-Regular.eot.ttf') format('truetype');
+			url('./TTCommons/TTCommons-Regular.woff') format('woff'),
+			url('./TTCommons/TTCommons-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }

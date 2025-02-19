@@ -18,21 +18,12 @@ function App() {
   };
 
 	useEffect(() => {
-		if (tg) {
-			tg.ready(); // Сообщаем Telegram, что MiniApp загружен
-			tg.expand(); // Делаем MiniApp на весь экран
-			tg.MainButton.setText("Продолжить"); // Устанавливаем текст кнопки
-			tg.MainButton.show(); // Показываем кнопку
-		}
-	}, []);
-
-	
-
-	useEffect(() => {
-		if (tg?.initDataUnsafe?.user) {
-			setUser(tg.initDataUnsafe.user);
-		}
-	}, []);
+		// @ts-ignore
+    const tg = window.Telegram?.WebApp;
+    if (tg?.initDataUnsafe?.user) {
+      setUser(tg.initDataUnsafe.user);
+    }
+  }, []);
 
   return (
 		<div className='mainDiv'>
