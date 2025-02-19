@@ -1,184 +1,192 @@
-.swiper-container {
-	position: absolute;
-	top: 10vh;
-  width: 100vw;
-  height: 67vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.background-overlay {
-  position: absolute;
-  top: 22vh;
-	right: 5vw;
-  width: 95vw;
-	border-radius: 30px;
-  height: 25vh;
-  background: #333333;
-  z-index: 0;
-}
-
-.telegramIcon {
-	position: absolute;
-	top: 10%;
-	right: 5vw;
-	width: 8vw;
-}
-
-.swiper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-	list-style: none;
-}
-
-.hidden {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.65s, transform 0.65s;
-}
-
-.item {
-  position: absolute;
-	left: 5%;
-  width: 90vw;
-  transition: all 0.65s ease;
-}
-
-.item-1 {
-  top: -5vh; 
-  opacity: 0;
-}
-
-.item-2 {
-  top: 0vh;
-  opacity: 0.7;
-}
-
-.item-3 {
-  top: 10vh;
-	opacity: 0.7;
-}
-
-.item-4 {
-  top: 22vh;
-	height: 25vh;
-  opacity: 1;
-	transition: top 0.4s ease-in-out, opacity 0.4s ease-in-out;
-}
-
-.item-4.swipe-up {
-  animation: moveDown 0.4s ease-in-out;
-}
-
-.item-5 {
-  top: 47vh;
-  opacity: 0.7;
-}
-
-.item-5.swipe-up {
-  animation: moveUp 0.4s ease-in-out;
-}
-
-.item-6 {
-  top: 57vh;
-  opacity: 0.7;
-}
-
-.item-7 {
-  top: 75vh;
-  opacity: 0;
-}
-
-@keyframes moveUp {
-  0% {
-    opacity: 0.7;
-  }
-  40% {
-    opacity: 0;
-  }
-	60% {
+@media (max-width: 768px) {
+	.swiper-container {
+		position: absolute;
+		top: 10vh;
+		width: 100vw;
+		height: 67vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		position: relative;
+	}
+	
+	/* статичный блок */
+	
+	.background-overlay {
+		position: absolute;
+		top: 22vh;
+		right: 2.5vw;
+		width: 95vw;
+		border-radius: 30px;
+		height: 25vh;
+		background: #333333;
+		z-index: 0;
+	}
+	
+	.telegramIcon {
+		position: absolute;
+		top: 10%;
+		right: 5vw;
+		width: 8vw;
+	}
+	
+	
+	.informationBlock {
+		position: absolute;
+		height: fit-content;
+		width: 75%;
+		display: flex;
+		align-items: flex-end;
+		gap: 20px;
+		padding: 10px 16px;
+		border-radius: 12px;
+		bottom: 5%;
+		right: 5%;
+	}
+	
+	.fade-out {
 		opacity: 0;
 	}
-}
-
-@keyframes moveDown {
-  0% {
-    opacity: 0.7;
-  }
-  30% {
-    opacity: 0;
-  }
-	40% {
+	
+	.fade-in {
+		opacity: 1;
+	}
+	
+	.userText {
+		font-size: 2vh;
+		line-height: 14px;
+		text-align: end;
+		color: rgba(255, 255, 255, 0.5);
+		transition: opacity 0.3s ease-in-out;
+	}
+	
+	.infoIcon {
+		width: 10%;
+	}
+	
+	/* статичный блок */
+	
+	.swiper {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		list-style: none;
+	}
+	
+	.hidden {
+		position: absolute;
+		opacity: 0;
+		transition: opacity 0.65s, transform 0.65s;
+	}
+	
+	.item {
+		position: absolute;
+		left: 5%;
+		width: 90vw;
+		transition: all 0.65s ease;
+	}
+	
+	.item-1 {
+		top: -5vh; 
 		opacity: 0;
 	}
+	
+	.item-2 {
+		top: 0vh;
+		opacity: 0.7;
+	}
+	
+	.item-3 {
+		top: 10vh;
+		opacity: 0.7;
+	}
+	
+	.item-4 {
+		top: 22vh;
+		height: 25vh;
+		opacity: 1;
+		transition: top 0.4s ease-in-out, opacity 0.4s ease-in-out;
+	}
+	
+	.item-4.swipe-up {
+		animation: moveDown 0.4s ease-in-out;
+	}
+	
+	.item-5 {
+		top: 47vh;
+		opacity: 0.7;
+	}
+	
+	.item-5.swipe-up {
+		animation: moveUp 0.4s ease-in-out;
+	}
+	
+	.item-6 {
+		top: 57vh;
+		opacity: 0.7;
+	}
+	
+	.item-7 {
+		top: 75vh;
+		opacity: 0;
+	}
+	
+	@keyframes moveUp {
+		0% {
+			opacity: 0.7;
+		}
+		40% {
+			opacity: 0;
+		}
+		60% {
+			opacity: 0;
+		}
+	}
+	
+	@keyframes moveDown {
+		0% {
+			opacity: 0.7;
+		}
+		30% {
+			opacity: 0;
+		}
+		40% {
+			opacity: 0;
+		}
+	}
+	
+	.userCard {
+		position: absolute;
+		width: 90%;
+		height: fit-content;
+		display: flex;
+		align-items:center;
+		gap: 20px;
+		padding: 20px 16px;
+		border-radius: 12px;
+	}
+	
+	.userIcon { 
+			will-change: transform;
+	}
+	
+	
+	.userInfo {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+	
+	.userName {
+		font-size: 16px;
+		color: #ddd;
+	}
+	
+	.userCompany {
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+	}	
 }
 
-.userCard {
-	position: absolute;
-	width: 90%;
-	height: fit-content;
-	display: flex;
-  align-items:center;
-  gap: 20px;
-  padding: 10px 16px;
-  border-radius: 12px;
-}
-
-.userIcon { 
-		will-change: transform;
-}
-
-
-.userInfo {
-  display: flex;
-  flex-direction: column;
-	gap: 5px;
-}
-
-.userName {
-  font-size: 16px;
-  color: #ddd;
-}
-
-.userCompany {
-	font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.informationBlock {
-	position: absolute;
-	height: fit-content;
-	width: 75%;
-	display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  padding: 10px 16px;
-  border-radius: 12px;
-	bottom: 5%;
-	right: 5%;
-}
-
-.fade-out {
-  opacity: 0;
-}
-
-.fade-in {
-  opacity: 1;
-}
-
-.userText {
-	font-size: 2vh;
-	line-height: 14px;
-	text-align: end;
-	color: rgba(255, 255, 255, 0.5);
-	transition: opacity 0.3s ease-in-out;
-}
-
-.infoIcon {
-	width: 10%;
-}

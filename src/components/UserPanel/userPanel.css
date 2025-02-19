@@ -1,15 +1,19 @@
-.user-panel {
-	position: absolute;
-	width: 90%;
-	left: 10%;
-	height: 10vh;
-	top: 0;
-  display: flex;
-  align-items: center;
-  gap: 25px;
+@media (max-width: 768px) {
+	.user-panel {
+		position: absolute;
+		width: 90%;
+		left: 5.8%;
+		top: 0;
+		display: flex;
+		align-items: center;
+		gap: 25px;
+		height: fit-content;
+		padding: 20px 16px;
+	}
+	
+	.user-name {
+		font-size: 16px;
+		color: white;
+	}
 }
 
-.user-name {
-  font-size: 16px;
-  color: white;
-}
