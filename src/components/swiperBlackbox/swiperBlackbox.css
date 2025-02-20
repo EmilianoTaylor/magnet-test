@@ -3,7 +3,7 @@
 		position: absolute;
 		top: 10vh;
 		width: 100vw;
-		height: 69vh;
+		height: 75vh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -37,7 +37,8 @@
 		height: fit-content;
 		width: 75%;
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
+		justify-content: end;
 		gap: 20px;
 		padding: 10px 16px;
 		border-radius: 12px;
@@ -129,8 +130,8 @@
 	}
 	
 	.item-7 {
-		top: 68vh;
-		opacity: 0;
+		top: 65vh;
+		opacity: -1;
 	}
 	
 	@keyframes moveUp {

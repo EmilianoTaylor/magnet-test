@@ -14,11 +14,3 @@ html {
 	color: #F1F1F1;
 	font-family: 'TT Commons', sans-serif;
 }
-
-@media (max-width: 768px) {
-	body {
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-	}
-}

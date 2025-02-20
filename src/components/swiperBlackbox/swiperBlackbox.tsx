@@ -11,7 +11,7 @@ const users = [
 	{ id: 2, name: "psmolensky", company: "", info: "Найм людей на долгосрочную работу в команде" },
 	{ id: 3, name: "apolyakov", company: "Росатом", info: "Ищет разработчика для создания нового продукта" },
 	{ id: 4, name: "pmakarov", company: "Marketing Adviser", info: "Найм дизайнера для создания нового бренда" },
-	{ id: 5, name: "ichulpanov", company: "", info: "Найм людей на долгосрочную работу в команде" },
+	{ id: 5, name: "ichulpanov", company: "", info: "Найм людей" },
 	{ id: 6, name: "Сергей Кравцов", company: "МФТИ", info: "Ищет маркетолога для продвижения нового продукта" },
 	{ id: 7, name: "Mikhaylo Mudryk", company: "", info: "Ищет инженера для создания нового продукта" },
 	{ id: 8, name: "Antony", company: "Betis", info: "Найм аналитика для анализа данных" },
