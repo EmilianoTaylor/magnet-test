@@ -1,9 +1,7 @@
-// @ts-nocheck
+import { UserIconProps } from "../interfaces/swiperListInterfaces";
 
-import { div } from "framer-motion/client";
-
-const UserIcon = ({ name, className }) => {
-  const getInitials = (name) => {
+const UserIcon: React.FC<UserIconProps> = ({ name, className }) => {
+  const getInitials = (name: string) => {
     if (!name) return "?";
     
     const words = name.trim().split(" ");

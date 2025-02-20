@@ -1,10 +1,8 @@
-// @ts-nocheck
-import './swiperBlackbox.css'
-import React, { useState, useEffect, useRef } from "react";
-import icon from '../images/userIcon.svg';
-import infoIcon from '../images/infoIcon.svg';
+import './swiperBlackbox.scss'
+import { useState, useEffect, useRef, TouchEvent } from "react";
 import UserIcon from '../UserIcon/userIcon';
-import telegramIcon from '../images/telegramIcon.svg';
+import BackgroundOverlay from './Backgorund-overlay/backgroundOverlay';
+import { SwiperBlackboxListProps } from '../interfaces/swiperListInterfaces';
 
 const users = [
 	{ id: 1, name: "msilenkov", company: "Google", info: "Ищет менеджера для реализации крупных задач на проекте" },
@@ -20,33 +18,33 @@ const users = [
 	{ id: 11, name: "Chukwuemeka", company: "Chelsea", info: "Найм дизайнера для создания нового бренда" },
 ];
 
-const SwiperBlackboxList = ({ toggleRotateIcon }) => {
+const SwiperBlackboxList: React.FC<SwiperBlackboxListProps> = ({ toggleRotateIcon }) => {
   const [startY, setStartY] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(1);
   const listRef = useRef(null);
   const [infoText, setInfoText] = useState(users[currentIndex + 2]?.info || "Нет информации");
   const [fade, setFade] = useState(false);
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: TouchEvent<HTMLUListElement>) => {
     setStartY(e.touches[0].clientY);
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = (e: TouchEvent<HTMLUListElement>) => {
     const endY = e.changedTouches[0].clientY;
     const diffY = startY - endY;
     if (diffY < -30) {
       setCurrentIndex((prev) => (prev + 1) % users.length);
 			toggleRotateIcon(-180);
       setTimeout(() => {
-        document.querySelector(".item-4").classList.remove("swipe-up");
-        document.querySelector(".item-5").classList.add("swipe-up");
+        document.querySelector(".item-4")?.classList.remove("swipe-up");
+        document.querySelector(".item-5")?.classList.add("swipe-up");
       }, 10);
     } else if (diffY > 30) {
       setCurrentIndex((prev) => (prev - 1 + users.length) % users.length);
 			toggleRotateIcon(180);
 			setTimeout(() => {
-        document.querySelector(".item-4").classList.add("swipe-up");
-        document.querySelector(".item-5").classList.remove("swipe-up");
+        document.querySelector(".item-4")?.classList.add("swipe-up");
+        document.querySelector(".item-5")?.classList.remove("swipe-up");
       }, 10);
     }
   };
@@ -61,13 +59,7 @@ const SwiperBlackboxList = ({ toggleRotateIcon }) => {
 
   return (
     <div className="swiper-container">
-      <div className="background-overlay">
-        <div className="informationBlock">
-          <span className={`userText ${fade ? "fade-out" : "fade-in"}`}>{infoText}</span>
-          <img src={infoIcon} className="infoIcon" />
-        </div>
-        <img src={telegramIcon} className="telegramIcon" />
-      </div>
+			<BackgroundOverlay fade={fade} infoText={infoText} />
       <ul
         className="swiper"
         onTouchStart={handleTouchStart}

@@ -1,0 +1,60 @@
+.background-overlay {
+	position: absolute;
+	top: 22vh;
+	right: 2.5vw;
+	width: 95vw;
+	border-radius: 30px;
+	height: 25vh;
+	background: #333333;
+	z-index: 0;
+
+	.informationBlock {
+		position: absolute;
+		height: fit-content;
+		width: 75%;
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		gap: 20px;
+		padding: 10px 16px;
+		border-radius: 12px;
+		bottom: 5%;
+		right: 5%;
+
+		.userText {
+			font-size: 2vh;
+			line-height: 14px;
+			text-align: end;
+			color: rgba(255, 255, 255, 0.5);
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		.fade-out {
+			opacity: 0;
+		}
+		
+		.fade-in {
+			opacity: 1;
+		}
+
+		.infoIcon {
+			width: 10%;
+		}
+	}
+	.telegramIcon {
+		position: absolute;
+		top: 10%;
+		right: 5vw;
+		width: 8vw;
+	}
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,8 @@
-// @ts-nocheck 
-import './filterPanel.css'
+import './filterPanel.scss'
 import searchIcon from '../images/searchIcon.svg'
+import { FilterPanelProps } from '../interfaces/swiperListInterfaces';
 
-const FilterPanel = ({ rotateIcon }) => {
+const FilterPanel: React.FC<FilterPanelProps> = ({ rotateIcon }) => {
 
 
 	return (

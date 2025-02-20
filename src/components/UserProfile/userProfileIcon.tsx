@@ -1,9 +1,8 @@
+import { UserProfileIconProps } from "../interfaces/swiperListInterfaces";
+import "./userProfileIcon.scss";
 
-// @ts-nocheck
-import "./userProfileIcon.css";
-
-const UserProfileIcon = ({ name, notifications = 0 }) => {
-	const getInitials = (name) => {
+const UserProfileIcon: React.FC<UserProfileIconProps> = ({ name, notifications = 0 }) => {
+	const getInitials = (name: string) => {
     if (!name) return "?";
     const words = name.trim().split(" ");
     return words.length === 1

@@ -1,9 +1,8 @@
-// @ts-nocheck
-
+import { UserProfileIconProps } from "../interfaces/swiperListInterfaces";
 import UserProfileIcon from "../UserProfile/userProfileIcon";
-import "./userPanel.css";
+import "./userPanel.scss";
 
-const UserPanel = ({ name, notifications }) => {
+const UserPanel: React.FC<UserProfileIconProps> = ({ name, notifications }) => {
   return (
     <div className="user-panel">
       <UserProfileIcon name={name} notifications={notifications} />
