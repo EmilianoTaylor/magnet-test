@@ -4,20 +4,25 @@
 		display: inline-block;
 
 		.notification-badge {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			position: absolute;
-			top: -5px;
-			left: -5px;
-			background: red;
+			width: 19px;
+			height: 19px;
+			left: -7px;
+			top: -6.5px;
+			background: #DD2330;
+			border-radius: 50%;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+		}
+		
+		.notification-text {
 			color: white;
 			font-size: 12px;
 			font-weight: bold;
-			border-radius: 50%;
-			width: 18px;
-			height: 18px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+			line-height: 14px; /* Adjust line-height */
+			padding-top: 2px; /* Adjust padding to move text down */
 		}
 	}
 }

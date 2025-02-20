@@ -29,7 +29,9 @@ const UserProfileIcon: React.FC<UserProfileIconProps> = ({ name, notifications =
 				</text>
 			</svg>
 			{notifications > 0 && (
-				<div className="notification-badge">{notifications}</div>
+				<div className="notification-badge">
+				<span className="notification-text">{notifications}</span>
+			</div>
 			)}
 		</div>
 	);
