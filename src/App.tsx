@@ -7,15 +7,15 @@ import SwipeHandler from './components/SwiperHandler/swiperHandler'
 import { init, miniApp } from '@telegram-apps/sdk';
 
 const initializeTelegramSDK = async () => {
-  try {
-    await init();
-    if (miniApp.ready.isAvailable()) {
-      await miniApp.ready();
-      console.log('Mini App готово');
-    }
-  } catch (error) {
-    console.error('Ошибка инициализации:', error);
-  }
+	try {
+		await init();
+		if (miniApp.ready.isAvailable()) {
+			await miniApp.ready();
+			console.log('Mini App готово');
+		}
+	} catch (error) {
+		console.error('Ошибка инициализации:', error);
+	}
 };
 
 
@@ -25,32 +25,32 @@ function App() {
 	//@ts-ignore
 	const userName = "Viacheslav"
 
-  const toggleRotateIcon = (direction: number) => {
-    setRotateIcon((prev) => prev + direction);
-  };
+	const toggleRotateIcon = (direction: number) => {
+		setRotateIcon((prev) => prev + direction);
+	};
 
-  useEffect(() => {
+	useEffect(() => {
 		// @ts-ignore
-    const tg = window.Telegram?.WebApp;
-    if (tg?.initDataUnsafe?.user) {
-      setUser(tg.initDataUnsafe.user);
-    }
-  }, []);
+		const tg = window.Telegram?.WebApp;
+		if (tg?.initDataUnsafe?.user) {
+			setUser(tg.initDataUnsafe.user);
+		}
+	}, []);
 
-  useEffect(() => {
-    initializeTelegramSDK();
-  }, []);
+	useEffect(() => {
+		initializeTelegramSDK();
+	}, []);
 
-  return (
+	return (
 		<SwipeHandler>
 			<div className='mainDiv'>
 				<UserPanel name={user.first_name} notifications={3}/>
 				<SwiperBlackboxList toggleRotateIcon={toggleRotateIcon} />
 				<FilterPanel rotateIcon={rotateIcon} />
 			</div>
-    </SwipeHandler>
+		</SwipeHandler>
 
-  )
+	)
 }
 
 export default App

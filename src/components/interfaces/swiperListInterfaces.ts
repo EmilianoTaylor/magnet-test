@@ -1,6 +1,6 @@
 export interface BackgroundOverlayProps {
-  fade: boolean;
-  infoText: string;
+	fade: boolean;
+	infoText: string;
 }
 
 export interface UserProfileIconProps {
@@ -18,5 +18,5 @@ export interface FilterPanelProps {
 }
 
 export interface SwiperBlackboxListProps {
-  toggleRotateIcon: (direction: number) => void;
+	toggleRotateIcon: (direction: number) => void;
 }

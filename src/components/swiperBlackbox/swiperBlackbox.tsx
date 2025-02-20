@@ -19,75 +19,75 @@ const users = [
 ];
 
 const SwiperBlackboxList: React.FC<SwiperBlackboxListProps> = ({ toggleRotateIcon }) => {
-  const [startY, setStartY] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const listRef = useRef(null);
-  const [infoText, setInfoText] = useState(users[currentIndex + 2]?.info || "Нет информации");
-  const [fade, setFade] = useState(false);
+	const [startY, setStartY] = useState(0);
+	const [currentIndex, setCurrentIndex] = useState(1);
+	const listRef = useRef(null);
+	const [infoText, setInfoText] = useState(users[currentIndex + 2]?.info || "Нет информации");
+	const [fade, setFade] = useState(false);
 
-  const handleTouchStart = (e: TouchEvent<HTMLUListElement>) => {
-    setStartY(e.touches[0].clientY);
-  };
+	const handleTouchStart = (e: TouchEvent<HTMLUListElement>) => {
+		setStartY(e.touches[0].clientY);
+	};
 
-  const handleTouchEnd = (e: TouchEvent<HTMLUListElement>) => {
-    const endY = e.changedTouches[0].clientY;
-    const diffY = startY - endY;
-    if (diffY < -30) {
-      setCurrentIndex((prev) => (prev + 1) % users.length);
+	const handleTouchEnd = (e: TouchEvent<HTMLUListElement>) => {
+		const endY = e.changedTouches[0].clientY;
+		const diffY = startY - endY;
+		if (diffY < -30) {
+			setCurrentIndex((prev) => (prev + 1) % users.length);
 			toggleRotateIcon(-180);
-      setTimeout(() => {
-        document.querySelector(".item-4")?.classList.remove("swipe-up");
-        document.querySelector(".item-5")?.classList.add("swipe-up");
-      }, 10);
-    } else if (diffY > 30) {
-      setCurrentIndex((prev) => (prev - 1 + users.length) % users.length);
+			setTimeout(() => {
+				document.querySelector(".item-4")?.classList.remove("swipe-up");
+				document.querySelector(".item-5")?.classList.add("swipe-up");
+			}, 10);
+		} else if (diffY > 30) {
+			setCurrentIndex((prev) => (prev - 1 + users.length) % users.length);
 			toggleRotateIcon(180);
 			setTimeout(() => {
-        document.querySelector(".item-4")?.classList.add("swipe-up");
-        document.querySelector(".item-5")?.classList.remove("swipe-up");
-      }, 10);
-    }
-  };
+				document.querySelector(".item-4")?.classList.add("swipe-up");
+				document.querySelector(".item-5")?.classList.remove("swipe-up");
+			}, 10);
+		}
+	};
 
-  useEffect(() => {
-    setFade(true);
-    setTimeout(() => {
-      setInfoText(users[(currentIndex + 2) % users.length]?.info || "Нет информации");
-      setFade(false);
-    }, 300);
-  }, [currentIndex]);
+	useEffect(() => {
+		setFade(true);
+		setTimeout(() => {
+			setInfoText(users[(currentIndex + 2) % users.length]?.info || "Нет информации");
+			setFade(false);
+		}, 300);
+	}, [currentIndex]);
 
-  return (
-    <div className="swiper-container">
+	return (
+		<div className="swiper-container">
 			<BackgroundOverlay fade={fade} infoText={infoText} />
-      <ul
-        className="swiperList"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        ref={listRef}
-      >
-        {users.map((user, index) => {
+			<ul
+				className="swiperList"
+				onTouchStart={handleTouchStart}
+				onTouchEnd={handleTouchEnd}
+				ref={listRef}
+			>
+				{users.map((user, index) => {
 					let className = "hidden";
 					const newIndex = (currentIndex + index - 1) % users.length;
 					if (newIndex >= 0 && newIndex < 7) {
 						className = `item item-${newIndex + 1}`;
 					}
 
-          return (
-            <li key={user.id} className={className}>
-              <div className="userCard">
-                <UserIcon name={user.name} className="userIcon" />
-                <div className="userInfo">
-                  <span className="userName">{user.name}</span>
-                  {user.company && <span className="userCompany">{user.company}</span>}
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+					return (
+						<li key={user.id} className={className}>
+							<div className="userCard">
+								<UserIcon name={user.name} className="userIcon" />
+								<div className="userInfo">
+									<span className="userName">{user.name}</span>
+									{user.company && <span className="userCompany">{user.company}</span>}
+								</div>
+							</div>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
 };
 
 export default SwiperBlackboxList;
