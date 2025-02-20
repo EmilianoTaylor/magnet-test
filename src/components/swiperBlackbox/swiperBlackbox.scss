@@ -1,3 +1,8 @@
+@mixin ItemProps ($top, $opacity) {
+	top: $top; 
+	opacity: $opacity;
+}
+
 @media (max-width: 768px) {
 	.swiper-container {
 		position: absolute;
@@ -9,133 +14,123 @@
 		justify-content: center;
 		overflow: hidden;
 		position: relative;
+
+
+		.swiperList {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			list-style: none;
+
+
+			.hidden {
+				position: absolute;
+				opacity: 0;
+				transition: opacity 0.65s, transform 0.65s;
+			}
+			
+			.item {
+				position: absolute;
+				left: 5%;
+				width: 90vw;
+				transition: all 0.65s ease;
+			}
+			
+			.item-1 {
+				@include ItemProps(-5vh, 0);
+			}
+			
+			.item-2 {
+				@include ItemProps(0vh, 0.7);
+			}
+			
+			.item-3 {
+				@include ItemProps(10vh, 0.7);
+			}
+			
+			.item-4 {
+				@include ItemProps(22vh, 1);
+				height: 25vh;
+				transition: top 0.4s ease-in-out, opacity 0.4s ease-in-out;
+			}
+			
+			.item-4.swipe-up {
+				animation: moveDown 0.4s ease-in-out;
+			}
+			
+			.item-5 {
+				@include ItemProps(47vh, 0.7);
+			}
+			
+			.item-5.swipe-up {
+				animation: moveUp 0.4s ease-in-out;
+			}
+			
+			.item-6 {
+				@include ItemProps(57vh, 0.7);
+			}
+			
+			.item-7 {
+				@include ItemProps(65vh, -1);
+			}
+			
+			.userCard {
+				position: absolute;
+				width: 90%;
+				height: fit-content;
+				display: flex;
+				align-items:center;
+				gap: 20px;
+				padding: 20px 16px;
+				border-radius: 12px;
+
+
+				.userIcon { 
+					will-change: transform;
+				}
+				
+				.userInfo {
+					display: flex;
+					flex-direction: column;
+					gap: 3px;
+				}
+				
+				.userName {
+					font-size: 19px;
+					color: #ddd;
+				}
+				
+				.userCompany {
+					font-size: 16px;
+					color: rgba(255, 255, 255, 0.5);
+				}	
+			}
+		}
 	}
-	
-	/* статичный блок */
-	
-	
-	/* статичный блок */
-	
-	.swiper {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		z-index: 1;
-		list-style: none;
+}
+
+@keyframes moveUp {
+	0% {
+		opacity: 0.7;
 	}
-	
-	.hidden {
-		position: absolute;
+	40% {
 		opacity: 0;
-		transition: opacity 0.65s, transform 0.65s;
 	}
-	
-	.item {
-		position: absolute;
-		left: 5%;
-		width: 90vw;
-		transition: all 0.65s ease;
-	}
-	
-	.item-1 {
-		top: -5vh; 
+	60% {
 		opacity: 0;
 	}
-	
-	.item-2 {
-		top: 0vh;
+}
+
+@keyframes moveDown {
+	0% {
 		opacity: 0.7;
 	}
-	
-	.item-3 {
-		top: 10vh;
-		opacity: 0.7;
+	30% {
+		opacity: 0;
 	}
-	
-	.item-4 {
-		top: 22vh;
-		height: 25vh;
-		opacity: 1;
-		transition: top 0.4s ease-in-out, opacity 0.4s ease-in-out;
+	40% {
+		opacity: 0;
 	}
-	
-	.item-4.swipe-up {
-		animation: moveDown 0.4s ease-in-out;
-	}
-	
-	.item-5 {
-		top: 47vh;
-		opacity: 0.7;
-	}
-	
-	.item-5.swipe-up {
-		animation: moveUp 0.4s ease-in-out;
-	}
-	
-	.item-6 {
-		top: 57vh;
-		opacity: 0.7;
-	}
-	
-	.item-7 {
-		top: 65vh;
-		opacity: -1;
-	}
-	
-	@keyframes moveUp {
-		0% {
-			opacity: 0.7;
-		}
-		40% {
-			opacity: 0;
-		}
-		60% {
-			opacity: 0;
-		}
-	}
-	
-	@keyframes moveDown {
-		0% {
-			opacity: 0.7;
-		}
-		30% {
-			opacity: 0;
-		}
-		40% {
-			opacity: 0;
-		}
-	}
-	
-	.userCard {
-		position: absolute;
-		width: 90%;
-		height: fit-content;
-		display: flex;
-		align-items:center;
-		gap: 20px;
-		padding: 20px 16px;
-		border-radius: 12px;
-	}
-	
-	.userIcon { 
-			will-change: transform;
-	}
-	
-	
-	.userInfo {
-		display: flex;
-		flex-direction: column;
-		gap: 3px;
-	}
-	
-	.userName {
-		font-size: 19px;
-		color: #ddd;
-	}
-	
-	.userCompany {
-		font-size: 16px;
-		color: rgba(255, 255, 255, 0.5);
-	}	
 }
 

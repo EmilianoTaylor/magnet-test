@@ -61,7 +61,7 @@ const SwiperBlackboxList: React.FC<SwiperBlackboxListProps> = ({ toggleRotateIco
     <div className="swiper-container">
 			<BackgroundOverlay fade={fade} infoText={infoText} />
       <ul
-        className="swiper"
+        className="swiperList"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         ref={listRef}
